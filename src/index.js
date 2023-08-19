@@ -1,1 +1,3 @@
-import './style.css';
+import './main.css';
+
+console.log('js running');
