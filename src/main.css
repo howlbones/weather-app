@@ -9,3 +9,27 @@ body {
   width: 100vw;
   background-color: black;
 }
+
+form input {
+  height: 30px;
+  font-size: 18px;
+}
+
+#places {
+  display: flex;
+  flex-direction: column;
+}
+
+#places button {
+  border: none;
+  width: auto;
+  color: rgb(208, 208, 208);
+  background-color: rgb(37, 37, 37);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 10px;
+}
+
+#places button:hover {
+  background-color: rgb(29, 29, 29);
+}
