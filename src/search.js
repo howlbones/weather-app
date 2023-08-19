@@ -1,5 +1,6 @@
 import { fetchData } from './fetchData';
 import { displayWeather } from './displayWeather';
+import { fetchGif } from './fetchGif';
 
 (() => {
   const form = document.querySelector('form');
@@ -40,9 +41,11 @@ import { displayWeather } from './displayWeather';
       const url = e.target.id;
       console.log(url);
       const weatherData = await fetchData('forecast', await url).then(
-        (responce) => {
+        async (responce) => {
           displayWeather(responce);
-          return responce;
+          if (responce.current.condition.text) {
+            await fetchGif(`${responce.current.condition.text} weather`);
+          }
         }
       );
     }

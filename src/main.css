@@ -37,3 +37,7 @@ form input {
 .display-container {
   color: white;
 }
+
+#tv-image {
+  width: 300px;
+}
