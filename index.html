@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-  <script src="./main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form onsubmit="return false;" autocomplete="off">
+      <label for="location-search"></label>
+      <input
+        type="search"
+        id="location-search"
+        name="q"
+        placeholder="Search city"
+        list="places"
+      />
+    </form>
+    <div class="places-container">
+      <div id="places"></div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
 </html>
