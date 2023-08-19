@@ -44,7 +44,11 @@ import { fetchGif } from './fetchGif';
         async (responce) => {
           displayWeather(responce);
           if (responce.current.condition.text) {
-            await fetchGif(`${responce.current.condition.text} weather`);
+            if (responce.current.is_day === 0) {
+              await fetchGif(responce.current.condition.text, 1);
+            } else {
+              await fetchGif(responce.current.condition.text);
+            }
           }
         }
       );
