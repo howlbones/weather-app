@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   fetchGif: () => (/* binding */ fetchGif)\n/* harmony export */ });\nasync function fetchGif(query) {\n  const img = document.querySelector('#tv-image');\n  const KEY = 'a3oREUyuVY4pTTyJItVmhbTxxo3cMURr';\n  console.log('fetching a gif');\n  try {\n    fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${KEY}&s=${query}`, {\n      mode: 'cors'\n    }).then(response => response.json()).then(response => {\n      console.log(response);\n      img.src = response.data.images.original.url;\n    });\n  } catch (error) {\n    console.log(error);\n  }\n}\n\n//# sourceURL=webpack://weather-app/./src/fetchGif.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   fetchGif: () => (/* binding */ fetchGif)\n/* harmony export */ });\n/* harmony import */ var _img_clear_gif__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./img/clear.gif */ \"./src/img/clear.gif\");\n/* harmony import */ var _img_lightrain_gif__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./img/lightrain.gif */ \"./src/img/lightrain.gif\");\n/* harmony import */ var _img_mist_gif__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./img/mist.gif */ \"./src/img/mist.gif\");\n/* harmony import */ var _img_night_gif__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./img/night.gif */ \"./src/img/night.gif\");\n/* harmony import */ var _img_overcast_gif__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./img/overcast.gif */ \"./src/img/overcast.gif\");\n/* harmony import */ var _img_partlycloudy_gif__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./img/partlycloudy.gif */ \"./src/img/partlycloudy.gif\");\n/* harmony import */ var _img_sunny_gif__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./img/sunny.gif */ \"./src/img/sunny.gif\");\n\n\n\n\n\n\n\nasync function fetchGif(query, night) {\n  const giphyQuery = `${query} weather tv show`;\n  const tvImg = document.querySelector('#tv-image');\n  const windowImg = document.querySelector('#window-image');\n  if (night) {\n    windowImg.src = _img_night_gif__WEBPACK_IMPORTED_MODULE_3__;\n  } else if (query === 'Clear') {\n    windowImg.src = _img_clear_gif__WEBPACK_IMPORTED_MODULE_0__;\n  } else if (query === 'Mist') {\n    windowImg.src = _img_mist_gif__WEBPACK_IMPORTED_MODULE_2__;\n  } else if (query === 'Overcast') {\n    windowImg.src = _img_overcast_gif__WEBPACK_IMPORTED_MODULE_4__;\n  } else if (query === 'Partly cloudy') {\n    windowImg.src = _img_partlycloudy_gif__WEBPACK_IMPORTED_MODULE_5__;\n  } else {\n    const words = query.split(' ');\n    let found = false;\n    for (let i = 0; i < words.length; i++) {\n      if (words[i] === 'rain' || words[i] === 'Rain') {\n        windowImg.src = _img_lightrain_gif__WEBPACK_IMPORTED_MODULE_1__;\n        found = true;\n      }\n    }\n    if (!found) {\n      windowImg.src = _img_sunny_gif__WEBPACK_IMPORTED_MODULE_6__;\n    }\n  }\n  const KEY = 'a3oREUyuVY4pTTyJItVmhbTxxo3cMURr';\n  console.log(giphyQuery);\n  try {\n    fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${KEY}&s=${giphyQuery}`, {\n      mode: 'cors'\n    }).then(response => response.json()).then(response => {\n      console.log(response);\n      tvImg.src = response.data.images.original.url;\n    });\n  } catch (error) {\n    console.log(error);\n  }\n}\n\n//# sourceURL=webpack://weather-app/./src/fetchGif.js?");
 
 /***/ }),
 
@@ -56,7 +56,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _fetchData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fetchData */ \"./src/fetchData.js\");\n/* harmony import */ var _displayWeather__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./displayWeather */ \"./src/displayWeather.js\");\n/* harmony import */ var _fetchGif__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fetchGif */ \"./src/fetchGif.js\");\n\n\n\n(() => {\n  const form = document.querySelector('form');\n  const input = form.querySelector('input');\n  const datalist = document.querySelector('#places');\n  input.addEventListener('input', refreshSuggestions);\n  async function refreshSuggestions() {\n    const searchRequest = input.value;\n    console.log(`searching: ${searchRequest}`);\n    while (datalist.firstChild) {\n      datalist.removeChild(datalist.lastChild);\n    }\n    if (searchRequest && searchRequest.length > 1) {\n      const searchResult = await (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fetchData)('search', searchRequest).then(result => {\n        if (result && result.length !== 0) {\n          console.log('Got search data:');\n          console.log(result[0].url);\n          console.log(result);\n          console.log('\\n');\n          for (let i = 0; i < result.length; i++) {\n            const newOption = document.createElement('button');\n            newOption.textContent = `${result[i].name} (${result[i].country})`;\n            newOption.id = result[i].url;\n            newOption.setAttribute('country', result[i].country);\n            newOption.addEventListener('click', requestWeather);\n            datalist.appendChild(newOption);\n          }\n          return result;\n        }\n      });\n    }\n    async function requestWeather(e) {\n      const url = e.target.id;\n      console.log(url);\n      const weatherData = await (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fetchData)('forecast', await url).then(async responce => {\n        (0,_displayWeather__WEBPACK_IMPORTED_MODULE_1__.displayWeather)(responce);\n        if (responce.current.condition.text) {\n          await (0,_fetchGif__WEBPACK_IMPORTED_MODULE_2__.fetchGif)(`${responce.current.condition.text} weather`);\n        }\n      });\n    }\n  }\n})();\n\n//# sourceURL=webpack://weather-app/./src/search.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _fetchData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fetchData */ \"./src/fetchData.js\");\n/* harmony import */ var _displayWeather__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./displayWeather */ \"./src/displayWeather.js\");\n/* harmony import */ var _fetchGif__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fetchGif */ \"./src/fetchGif.js\");\n\n\n\n(() => {\n  const form = document.querySelector('form');\n  const input = form.querySelector('input');\n  const datalist = document.querySelector('#places');\n  input.addEventListener('input', refreshSuggestions);\n  async function refreshSuggestions() {\n    const searchRequest = input.value;\n    console.log(`searching: ${searchRequest}`);\n    while (datalist.firstChild) {\n      datalist.removeChild(datalist.lastChild);\n    }\n    if (searchRequest && searchRequest.length > 1) {\n      const searchResult = await (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fetchData)('search', searchRequest).then(result => {\n        if (result && result.length !== 0) {\n          console.log('Got search data:');\n          console.log(result[0].url);\n          console.log(result);\n          console.log('\\n');\n          for (let i = 0; i < result.length; i++) {\n            const newOption = document.createElement('button');\n            newOption.textContent = `${result[i].name} (${result[i].country})`;\n            newOption.id = result[i].url;\n            newOption.setAttribute('country', result[i].country);\n            newOption.addEventListener('click', requestWeather);\n            datalist.appendChild(newOption);\n          }\n          return result;\n        }\n      });\n    }\n    async function requestWeather(e) {\n      const url = e.target.id;\n      console.log(url);\n      const weatherData = await (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fetchData)('forecast', await url).then(async responce => {\n        (0,_displayWeather__WEBPACK_IMPORTED_MODULE_1__.displayWeather)(responce);\n        if (responce.current.condition.text) {\n          if (responce.current.is_day === 0) {\n            await (0,_fetchGif__WEBPACK_IMPORTED_MODULE_2__.fetchGif)(responce.current.condition.text, 1);\n          } else {\n            await (0,_fetchGif__WEBPACK_IMPORTED_MODULE_2__.fetchGif)(responce.current.condition.text);\n          }\n        }\n      });\n    }\n  }\n})();\n\n//# sourceURL=webpack://weather-app/./src/search.js?");
 
 /***/ }),
 
@@ -158,6 +158,76 @@ eval("\n\n/* istanbul ignore next  */\nfunction apply(styleElement, options, obj
 
 eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElement) {\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = css;\n  } else {\n    while (styleElement.firstChild) {\n      styleElement.removeChild(styleElement.firstChild);\n    }\n    styleElement.appendChild(document.createTextNode(css));\n  }\n}\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack://weather-app/./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
 
+/***/ }),
+
+/***/ "./src/img/clear.gif":
+/*!***************************!*\
+  !*** ./src/img/clear.gif ***!
+  \***************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"f259b9e7c0851c7aec92.gif\";\n\n//# sourceURL=webpack://weather-app/./src/img/clear.gif?");
+
+/***/ }),
+
+/***/ "./src/img/lightrain.gif":
+/*!*******************************!*\
+  !*** ./src/img/lightrain.gif ***!
+  \*******************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"7ac8593623eb3ee0873e.gif\";\n\n//# sourceURL=webpack://weather-app/./src/img/lightrain.gif?");
+
+/***/ }),
+
+/***/ "./src/img/mist.gif":
+/*!**************************!*\
+  !*** ./src/img/mist.gif ***!
+  \**************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"48c3ed91cbbe823d7f84.gif\";\n\n//# sourceURL=webpack://weather-app/./src/img/mist.gif?");
+
+/***/ }),
+
+/***/ "./src/img/night.gif":
+/*!***************************!*\
+  !*** ./src/img/night.gif ***!
+  \***************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"97876af47d876a25c5e4.gif\";\n\n//# sourceURL=webpack://weather-app/./src/img/night.gif?");
+
+/***/ }),
+
+/***/ "./src/img/overcast.gif":
+/*!******************************!*\
+  !*** ./src/img/overcast.gif ***!
+  \******************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"119f35ebcb9741c23d5a.gif\";\n\n//# sourceURL=webpack://weather-app/./src/img/overcast.gif?");
+
+/***/ }),
+
+/***/ "./src/img/partlycloudy.gif":
+/*!**********************************!*\
+  !*** ./src/img/partlycloudy.gif ***!
+  \**********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"e41ef475bbee74f0acf0.gif\";\n\n//# sourceURL=webpack://weather-app/./src/img/partlycloudy.gif?");
+
+/***/ }),
+
+/***/ "./src/img/sunny.gif":
+/*!***************************!*\
+  !*** ./src/img/sunny.gif ***!
+  \***************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"9e2e1f2e8f8bea2b76cc.gif\";\n\n//# sourceURL=webpack://weather-app/./src/img/sunny.gif?");
+
 /***/ })
 
 /******/ 	});
@@ -211,6 +281,18 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -225,6 +307,29 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
