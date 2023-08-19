@@ -1,4 +1,5 @@
 import { fetchData } from './fetchData';
+import { displayWeather } from './displayWeather';
 
 (() => {
   const form = document.querySelector('form');
@@ -26,6 +27,7 @@ import { fetchData } from './fetchData';
               newOption.textContent = `${result[i].name} (${result[i].country})`;
               newOption.id = result[i].url;
               newOption.setAttribute('country', result[i].country);
+              newOption.addEventListener('click', requestWeather);
               datalist.appendChild(newOption);
             }
 
@@ -33,11 +35,16 @@ import { fetchData } from './fetchData';
           }
         }
       );
-
-      // const updateDatalist = await searchResult;
-      // updateDatalist.then((data) => {
-      //   console.log('updated');
-      // });
+    }
+    async function requestWeather(e) {
+      const url = e.target.id;
+      console.log(url);
+      const weatherData = await fetchData('forecast', await url).then(
+        (responce) => {
+          displayWeather(responce);
+          return responce;
+        }
+      );
     }
   }
 })();

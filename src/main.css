@@ -33,3 +33,7 @@ form input {
 #places button:hover {
   background-color: rgb(29, 29, 29);
 }
+
+.display-container {
+  color: white;
+}
