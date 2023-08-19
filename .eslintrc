@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "wesbos"
+  ],
+  "rules": {
+    // 0 to tun off
+    // 1 for warning
+    // 2 for error
+    "no-unused-vars": 1 
+  }
+}
