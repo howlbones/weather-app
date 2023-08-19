@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/fetchData.js":
+/*!**************************!*\
+  !*** ./src/fetchData.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   fetchData: () => (/* binding */ fetchData)\n/* harmony export */ });\nasync function fetchData(mode, city) {\n  if (mode && city) {\n    const KEY = '9201fe35f724480e8e7115934231508';\n    const baseUrl = 'http://api.weatherapi.com/v1';\n    const modeUrl = mode === 'forecast' ? '/forecast.json' : '/search.json';\n    const data = await getData(KEY, baseUrl, modeUrl);\n    return data;\n  }\n  async function getData(KEY, baseUrl, modeUrl) {\n    try {\n      const url = `${baseUrl + modeUrl}?key=${KEY}&q=${city}`;\n      console.log(`Fetching: ${url}`);\n      const response = await fetch(url, {\n        mode: 'cors'\n      });\n      const object = await response.json();\n      return object;\n    } catch (error) {\n      console.error(error);\n    }\n  }\n}\n\n//# sourceURL=webpack://weather-app/./src/fetchData.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main.css */ \"./src/main.css\");\n\nconsole.log('js running');\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main.css */ \"./src/main.css\");\n/* harmony import */ var _fetchData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fetchData */ \"./src/fetchData.js\");\n\n\n(function app() {\n  (0,_fetchData__WEBPACK_IMPORTED_MODULE_1__.fetchData)('search', 'saint petersburg').then(responce => {\n    const data = responce;\n    console.log('Got search data:');\n    console.log(data);\n  });\n  (0,_fetchData__WEBPACK_IMPORTED_MODULE_1__.fetchData)('forecast', 'moscow').then(responce => {\n    const data = responce;\n    console.log('Got forecast data:');\n    console.log(data);\n  });\n})();\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 
 /***/ }),
 
