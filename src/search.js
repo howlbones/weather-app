@@ -38,6 +38,10 @@ import { fetchGif } from './fetchGif';
       );
     }
     async function requestWeather(e) {
+      while (datalist.firstChild) {
+        datalist.removeChild(datalist.lastChild);
+      }
+      input.value = '';
       const url = e.target.id;
       console.log(url);
       const weatherData = await fetchData('forecast', await url).then(
@@ -52,6 +56,20 @@ import { fetchGif } from './fetchGif';
           }
         }
       );
+      // const forecastData = await fetchData('future', await url).then(
+      //   async (responce) => {
+      //     console.log('fetching forecast');
+      //     console.log(responce);
+      //     // displayWeather(responce);
+      //     // if (responce.current.condition.text) {
+      //     //   if (responce.current.is_day === 0) {
+      //     //     await fetchGif(responce.current.condition.text, 1);
+      //     //   } else {
+      //     //     await fetchGif(responce.current.condition.text);
+      //     //   }
+      //     // }
+      //   }
+      // );
     }
   }
 })();

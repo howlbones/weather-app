@@ -1,6 +1,8 @@
 import './main.css';
 import { fetchData } from './fetchData';
+import { fetchForecast } from './fetchForecast';
 import { displayWeather } from './displayWeather';
+import { displayForecast } from './displayForecast';
 import { fetchGif } from './fetchGif';
 import CaveImg from './img/cave.png';
 import EyeImg from './img/eye.png';
@@ -26,6 +28,11 @@ require('./search.js');
       }
     }
   });
+
+  const forecastData = await fetchForecast('london').then(async (responce) => {
+    displayForecast(responce);
+  });
+
   // const searchRequest = 'saint-petersburg';
   // const searchResult = await fetchData('search', searchRequest).then(
   //   (result) => {
