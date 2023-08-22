@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 export async function fetchForecast(city) {
   if (city) {
     const KEY = '9201fe35f724480e8e7115934231508';
-    const baseUrl = 'http://api.weatherapi.com/v1';
+    const baseUrl = 'https://api.weatherapi.com/v1';
     const data = await getData(KEY, baseUrl, '/forecast.json');
     return data;
   }

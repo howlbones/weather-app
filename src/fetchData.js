@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 export async function fetchData(mode, city) {
   if (mode && city) {
     const KEY = '9201fe35f724480e8e7115934231508';
-    const baseUrl = 'http://api.weatherapi.com/v1';
+    const baseUrl = 'https://api.weatherapi.com/v1';
     const modeUrl = mode === 'forecast' ? '/forecast.json' : '/search.json';
     const data = await getData(KEY, baseUrl, modeUrl);
     return data;
