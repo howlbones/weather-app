@@ -3,32 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Weather app</title>
   </head>
   <body>
-    <form onsubmit="return false;" autocomplete="off">
-      <label for="location-search"></label>
-      <input
-        type="search"
-        id="location-search"
-        name="q"
-        placeholder="Search city"
-        list="places"
-      />
-    </form>
-    <div class="places-container">
-      <div id="places"></div>
+    <div class="search-container">
+      <form onsubmit="return false;" autocomplete="off">
+        <label for="location-search"></label>
+        <input
+          type="text"
+          id="location-search"
+          name="q"
+          placeholder="Search city"
+          list="places"
+        />
+      </form>
+      <div class="places-container">
+        <div id="places"></div>
+      </div>
     </div>
 
     <div class="display-container">
       <div class="left-side">
+        <p id="place"></p>
+        <p id="condition"></p>
+        <img src="" alt="" id="condition-icon" />
         <p id="temperature-celcius"></p>
+        <p id="temperature-f"></p>
+        <p class="label">Feels like</p>
+        <p id="feels-like"></p>
       </div>
       <div class="middle">
-        <img src="" alt="" id="tv-image" />
-        <img src="" alt="" id="window-image" />
+        <div class="cave-container">
+          <img src="" alt="" id="eye" />
+          <img src="" alt="bat-cave" id="cave" />
+          <img src="" alt="" id="tv-image" />
+          <img src="" alt="" id="window-image" />
+        </div>
       </div>
-      <div class="right-side"></div>
+      <div class="right-side">
+        <p class="label">Winds</p>
+        <p id="winds"></p>
+        <p class="label">Wind direction</p>
+        <p id="wind-direction"></p>
+        <p class="label">Humidity</p>
+        <p id="humidity"></p>
+        <p class="label">Pressure</p>
+        <p id="pressure-mb"></p>
+      </div>
     </div>
 
     <script src="./main.js"></script>
