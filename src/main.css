@@ -240,7 +240,7 @@ form input:focus {
   background-color: black;
   position: absolute;
   z-index: 7;
-  height: 460px;
+  height: 860px;
   transition: 1s;
 }
 

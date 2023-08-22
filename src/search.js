@@ -40,7 +40,7 @@ import { animation } from './animationController';
       animation.closeEye();
       setTimeout(() => {
         requestWeather(e);
-      }, 800);
+      }, 400);
     }
     async function requestWeather(e) {
       while (datalist.firstChild) {
