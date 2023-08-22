@@ -36,7 +36,6 @@ export async function fetchGif(query, night) {
   }
 
   const KEY = 'a3oREUyuVY4pTTyJItVmhbTxxo3cMURr';
-  console.log(giphyQuery);
   try {
     fetch(
       `https://api.giphy.com/v1/gifs/translate?api_key=${KEY}&s=${giphyQuery}`,
@@ -46,7 +45,6 @@ export async function fetchGif(query, night) {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         tvImg.src = response.data.images.original.url;
       });
   } catch (error) {

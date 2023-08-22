@@ -6,15 +6,12 @@ export const animation = (() => {
   const moveEye = () => {
     if (eye) {
       eye.classList.add('running');
-      console.log('moving eye');
-      console.log(eye);
     }
     setTimeout(_pauseEye, 4000);
   };
 
   const _pauseEye = () => {
     eye.classList.remove('running');
-    console.log(eye);
   };
 
   const closeEye = async () => {

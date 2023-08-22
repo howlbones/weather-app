@@ -1,7 +1,6 @@
 import { format } from 'date-fns';
 
 export function displayWeather(data) {
-  console.log(data);
   const place = document.querySelector('.title-container .location');
   const date = document.querySelector('.title-container .todays-date');
   const condition = document.querySelector('#condition');

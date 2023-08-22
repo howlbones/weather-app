@@ -16,7 +16,6 @@ export async function fetchForecast(city) {
         date.setDate(date.getDate() + 1);
         const dateUrl = format(date, 'yyyy-MM-dd');
         const url = `${baseUrl + modeUrl}?key=${KEY}&q=${city}&dt=${dateUrl}`;
-        console.log(`fetching url: ${url}`);
         const response = await fetch(url, { mode: 'cors' });
         const object = await response.json();
         forecastArray.push(object);

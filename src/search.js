@@ -13,7 +13,6 @@ import { animation } from './animationController';
 
   async function refreshSuggestions() {
     const searchRequest = input.value;
-    console.log(`searching: ${searchRequest}`);
     while (datalist.firstChild) {
       datalist.removeChild(datalist.lastChild);
     }
@@ -22,10 +21,6 @@ import { animation } from './animationController';
       const searchResult = await fetchData('search', searchRequest).then(
         (result) => {
           if (result && result.length !== 0) {
-            console.log('Got search data:');
-            console.log(result[0].url);
-            console.log(result);
-            console.log('\n');
             for (let i = 0; i < result.length; i++) {
               const newOption = document.createElement('button');
               newOption.textContent = `${result[i].name} (${result[i].country})`;
@@ -53,7 +48,6 @@ import { animation } from './animationController';
       }
       input.value = '';
       const url = e.target.id;
-      console.log(url);
       const weatherData = await fetchData('forecast', await url).then(
         async (responce) => {
           displayWeather(responce);

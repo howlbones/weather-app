@@ -12,6 +12,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.main-container {
+  max-height: 800px;
+}
+
 .title-container {
   display: flex;
   flex-direction: column;
@@ -92,7 +96,8 @@ form input:focus {
 
 .cave-container {
   /* border: solid 1px white; */
-  height: 100vh;
+  height: 900px;
+  max-height: 900px;
   width: 600px;
   display: flex;
   align-items: center;
@@ -169,16 +174,12 @@ form input:focus {
   color: rgb(189, 189, 239);
 }
 
-#temperature-celcius,
-#temperature-f {
-}
-
 .forecast-container {
   display: flex;
   justify-content: center;
   gap: 40px;
   position: absolute;
-  bottom: 80px;
+  top: 650px;
   z-index: 5;
   width: 100vw;
 }
@@ -209,7 +210,7 @@ form input:focus {
   width: 20px;
   position: absolute;
   right: 114px;
-  top: 357px;
+  top: 352px;
   animation-name: eye;
   animation-duration: 2s;
   animation-timing-function: ease;
