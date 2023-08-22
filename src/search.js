@@ -1,6 +1,8 @@
 import { fetchData } from './fetchData';
 import { displayWeather } from './displayWeather';
 import { fetchGif } from './fetchGif';
+import { fetchForecast } from './fetchForecast';
+import { displayForecast } from './displayForecast';
 
 (() => {
   const form = document.querySelector('form');
@@ -56,6 +58,9 @@ import { fetchGif } from './fetchGif';
           }
         }
       );
+      const forecastData = await fetchForecast(url).then(async (responce) => {
+        displayForecast(responce);
+      });
       // const forecastData = await fetchData('future', await url).then(
       //   async (responce) => {
       //     console.log('fetching forecast');
