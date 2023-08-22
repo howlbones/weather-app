@@ -3,6 +3,7 @@ import { displayWeather } from './displayWeather';
 import { fetchGif } from './fetchGif';
 import { fetchForecast } from './fetchForecast';
 import { displayForecast } from './displayForecast';
+import { animation } from './animationController';
 
 (() => {
   const form = document.querySelector('form');
@@ -30,7 +31,7 @@ import { displayForecast } from './displayForecast';
               newOption.textContent = `${result[i].name} (${result[i].country})`;
               newOption.id = result[i].url;
               newOption.setAttribute('country', result[i].country);
-              newOption.addEventListener('click', requestWeather);
+              newOption.addEventListener('click', initWeatherRequest);
               datalist.appendChild(newOption);
             }
 
@@ -38,6 +39,13 @@ import { displayForecast } from './displayForecast';
           }
         }
       );
+    }
+
+    function initWeatherRequest(e) {
+      animation.closeEye();
+      setTimeout(() => {
+        requestWeather(e);
+      }, 800);
     }
     async function requestWeather(e) {
       while (datalist.firstChild) {
@@ -61,20 +69,11 @@ import { displayForecast } from './displayForecast';
       const forecastData = await fetchForecast(url).then(async (responce) => {
         displayForecast(responce);
       });
-      // const forecastData = await fetchData('future', await url).then(
-      //   async (responce) => {
-      //     console.log('fetching forecast');
-      //     console.log(responce);
-      //     // displayWeather(responce);
-      //     // if (responce.current.condition.text) {
-      //     //   if (responce.current.is_day === 0) {
-      //     //     await fetchGif(responce.current.condition.text, 1);
-      //     //   } else {
-      //     //     await fetchGif(responce.current.condition.text);
-      //     //   }
-      //     // }
-      //   }
-      // );
+
+      setTimeout(() => {
+        animation.openEye();
+        animation.moveEye();
+      }, await Promise.all([forecastData, requestWeather]));
     }
   }
 })();

@@ -12,6 +12,26 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 3;
+  color: rgb(164, 66, 66);
+  width: 100vw;
+  top: 170px;
+  font-size: 28px;
+  font-weight: 600;
+  gap: 10px;
+}
+
+.title-container .location {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgb(237, 237, 237);
+}
+
 .search-container {
   position: absolute;
   margin-top: 40px;
@@ -20,7 +40,7 @@ body {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  z-index: 3;
+  z-index: 6;
 }
 
 form input {
@@ -41,6 +61,7 @@ form input:focus {
   display: flex;
   flex-direction: column;
   width: 400px;
+  z-index: 6;
 }
 
 #places button {
@@ -51,6 +72,7 @@ form input:focus {
   cursor: pointer;
   font-size: 16px;
   padding: 4px 10px;
+  z-index: 6;
 }
 
 #places button:hover {
@@ -69,7 +91,7 @@ form input:focus {
 }
 
 .cave-container {
-  border: solid 1px white;
+  /* border: solid 1px white; */
   height: 100vh;
   width: 600px;
   display: flex;
@@ -79,7 +101,7 @@ form input:focus {
 }
 
 #cave {
-  border: solid 1px white;
+  /* border: solid 1px white; */
   z-index: 2;
 }
 
@@ -97,14 +119,6 @@ form input:focus {
   top: 310px;
   width: 250px;
   position: absolute;
-}
-
-#eye {
-  z-index: 3;
-  width: 20px;
-  position: absolute;
-  right: 110px;
-  top: 357px;
 }
 
 .left-side {
@@ -186,4 +200,84 @@ form input:focus {
 
 .day .label {
   font-size: 12px;
+}
+
+/* Animation */
+
+#eye {
+  z-index: 3;
+  width: 20px;
+  position: absolute;
+  right: 114px;
+  top: 357px;
+  animation-name: eye;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: paused;
+}
+
+#eye.running {
+  animation-play-state: running !important;
+}
+
+@keyframes eye {
+  0% {
+    right: 114px;
+    transform-origin: left;
+    transform: translate(0px);
+  }
+  100% {
+    transform: translateX(8px);
+  }
+}
+
+.top-eyelid,
+.bottom-eyelid {
+  width: 100vw;
+  background-color: black;
+  position: absolute;
+  z-index: 7;
+  height: 460px;
+  transition: 1s;
+}
+
+.top-eyelid {
+  transform-origin: top;
+}
+
+.bottom-eyelid {
+  bottom: 0px;
+  transform-origin: bottom;
+}
+
+.top-eyelid {
+  /* animation-name: open-top; */
+  /* animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: running; */
+}
+
+.top-eyelid.opened {
+  transform: scaleY(0.01);
+}
+
+.bottom-eyelid.opened {
+  transform: scaleY(0.01);
+}
+
+@keyframes open-top {
+  0% {
+    /* height: 10px; */
+    transform-origin: top;
+    transform: scaleY(1);
+  }
+  100% {
+    /* height: 1000px; */
+    transform-origin: top;
+    transform: scaleY(0.01);
+  }
 }

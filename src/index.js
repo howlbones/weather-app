@@ -6,6 +6,7 @@ import { displayForecast } from './displayForecast';
 import { fetchGif } from './fetchGif';
 import CaveImg from './img/cave.png';
 import EyeImg from './img/eye.png';
+import { animation } from './animationController';
 
 require('./search.js');
 
@@ -33,23 +34,6 @@ require('./search.js');
     displayForecast(responce);
   });
 
-  // const searchRequest = 'saint-petersburg';
-  // const searchResult = await fetchData('search', searchRequest).then(
-  //   (result) => {
-  //     console.log('Got search data:');
-  //     console.log(result[0].url);
-  //     console.log(result);
-  //     console.log('\n');
-  //     return result;
-  //   }
-  // );
-  // const weatherData = await fetchData(
-  //   'forecast',
-  //   await searchResult[0].url
-  // ).then((responce) => {
-  //   console.log('Got forecast data:');
-  //   console.log(responce);
-  //   console.log('\n');
-  //   return responce;
-  // });
+  animation.openEye();
+  animation.moveEye();
 })();
