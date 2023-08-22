@@ -2,7 +2,16 @@ export async function fetchData(mode, city) {
   if (mode && city) {
     const KEY = '9201fe35f724480e8e7115934231508';
     const baseUrl = 'http://api.weatherapi.com/v1';
-    const modeUrl = mode === 'forecast' ? '/forecast.json' : '/search.json';
+    // const modeUrl = mode === 'forecast' ? '/forecast.json' : '/search.json';
+    let modeUrl;
+    if (mode === 'forecast') {
+      modeUrl = '/forecast.json';
+    } else if (mode === 'future') {
+      modeUrl = '/future.json';
+    } else {
+      modeUrl = '/search.json';
+    }
+    console.log(`MODE:${modeUrl}`);
     const data = await getData(KEY, baseUrl, modeUrl);
     return data;
   }

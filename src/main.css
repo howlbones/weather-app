@@ -26,7 +26,7 @@ body {
 form input {
   height: 30px;
   font-size: 18px;
-  background-color: rgb(62, 62, 62);
+  background-color: rgb(40, 40, 40);
   border: none;
   padding-left: 5px;
   color: rgb(202, 202, 202);
@@ -107,9 +107,54 @@ form input:focus {
   top: 357px;
 }
 
+.left-side {
+  width: 160px;
+  margin-bottom: 25px;
+  text-align: end;
+  /* position: relative;
+  left: 40px; */
+  z-index: 3;
+}
+
+.right-side {
+  margin-bottom: 30px;
+  width: 160px;
+}
+
+.left-side img {
+  width: 60px;
+  align-self: end;
+}
+
 .right-side,
 .left-side {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: rgb(237, 237, 237);
+}
+
+.right-side p,
+.left-side p {
+  font-size: 22px;
+  margin-top: 6px;
+}
+
+.right-side .label,
+.left-side .label {
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+#place {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#condition {
+  color: rgb(189, 189, 239);
+}
+
+#temperature-celcius,
+#temperature-f {
 }
