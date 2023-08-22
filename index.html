@@ -6,89 +6,86 @@
     <title>Weather app</title>
   </head>
   <body>
-    <div class="search-container">
-      <form onsubmit="return false;" autocomplete="off">
-        <label for="location-search"></label>
-        <input
-          type="text"
-          id="location-search"
-          name="q"
-          placeholder="Search city"
-          list="places"
-        />
-      </form>
-      <div class="places-container">
-        <div id="places"></div>
-      </div>
-    </div>
-
-    <div class="top-eyelid"></div>
-
-    <div class="title-container">
-      <p class="todays-date"></p>
-      <p class="location"></p>
-    </div>
-
-    <div class="display-container">
-      <div class="left-side">
-        <p id="condition"></p>
-        <img src="" alt="" id="condition-icon" />
-        <p id="temperature-celcius"></p>
-        <p id="temperature-f"></p>
-        <p class="label">Feels like</p>
-        <p id="feels-like"></p>
-      </div>
-      <div class="middle">
-        <div class="cave-container">
-          <img src="" alt="" id="eye" />
-          <img src="" alt="bat-cave" id="cave" />
-          <img src="" alt="" id="tv-image" />
-          <img src="" alt="" id="window-image" />
+    <div class="main-container">
+      <div class="search-container">
+        <form onsubmit="return false;" autocomplete="off">
+          <label for="location-search"></label>
+          <input
+            type="text"
+            id="location-search"
+            name="q"
+            placeholder="Search city"
+            list="places"
+          />
+        </form>
+        <div class="places-container">
+          <div id="places"></div>
         </div>
       </div>
-      <div class="right-side">
-        <p class="label">Winds</p>
-        <p id="winds"></p>
-        <p class="label">Wind direction</p>
-        <p id="wind-direction"></p>
-        <p class="label">Humidity</p>
-        <p id="humidity"></p>
-        <p class="label">Pressure</p>
-        <p id="pressure-mb"></p>
+      <div class="top-eyelid"></div>
+      <div class="title-container">
+        <p class="todays-date"></p>
+        <p class="location"></p>
       </div>
+      <div class="display-container">
+        <div class="left-side">
+          <p id="condition"></p>
+          <img src="" alt="" id="condition-icon" />
+          <p id="temperature-celcius"></p>
+          <p id="temperature-f"></p>
+          <p class="label">Feels like</p>
+          <p id="feels-like"></p>
+        </div>
+        <div class="middle">
+          <div class="cave-container">
+            <img src="" alt="" id="eye" />
+            <img src="" alt="bat-cave" id="cave" />
+            <img src="" alt="" id="tv-image" />
+            <img src="" alt="" id="window-image" />
+          </div>
+        </div>
+        <div class="right-side">
+          <p class="label">Winds</p>
+          <p id="winds"></p>
+          <p class="label">Wind direction</p>
+          <p id="wind-direction"></p>
+          <p class="label">Humidity</p>
+          <p id="humidity"></p>
+          <p class="label">Pressure</p>
+          <p id="pressure-mb"></p>
+        </div>
+      </div>
+      <div class="forecast-container">
+        <div class="day">
+          <p class="forecast-date"></p>
+          <p class="label">Sunset</p>
+          <p class="sunset"></p>
+          <p class="label">Moon rise</p>
+          <p class="moon-rise"></p>
+          <p class="label">Rain chance</p>
+          <p class="rain-chance"></p>
+        </div>
+        <div class="day">
+          <p class="forecast-date"></p>
+          <p class="label">Sunset</p>
+          <p class="sunset"></p>
+          <p class="label">Moon rise</p>
+          <p class="moon-rise"></p>
+          <p class="label">Rain chance</p>
+          <p class="rain-chance"></p>
+        </div>
+        <div class="day">
+          <p class="forecast-date"></p>
+          <p class="label">Sunset</p>
+          <p class="sunset"></p>
+          <p class="label">Moon rise</p>
+          <p class="moon-rise"></p>
+          <p class="label">Rain chance</p>
+          <p class="rain-chance"></p>
+        </div>
+      </div>
+      <div class="bottom-eyelid"></div>
     </div>
-
-    <div class="forecast-container">
-      <div class="day">
-        <p class="forecast-date"></p>
-        <p class="label">Sunset</p>
-        <p class="sunset"></p>
-        <p class="label">Moon rise</p>
-        <p class="moon-rise"></p>
-        <p class="label">Rain chance</p>
-        <p class="rain-chance"></p>
-      </div>
-      <div class="day">
-        <p class="forecast-date"></p>
-        <p class="label">Sunset</p>
-        <p class="sunset"></p>
-        <p class="label">Moon rise</p>
-        <p class="moon-rise"></p>
-        <p class="label">Rain chance</p>
-        <p class="rain-chance"></p>
-      </div>
-      <div class="day">
-        <p class="forecast-date"></p>
-        <p class="label">Sunset</p>
-        <p class="sunset"></p>
-        <p class="label">Moon rise</p>
-        <p class="moon-rise"></p>
-        <p class="label">Rain chance</p>
-        <p class="rain-chance"></p>
-      </div>
-    </div>
-
-    <div class="bottom-eyelid"></div>
 
     <script src="./main.js"></script>
   </body>
