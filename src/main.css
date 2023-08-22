@@ -158,3 +158,32 @@ form input:focus {
 #temperature-celcius,
 #temperature-f {
 }
+
+.forecast-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  position: absolute;
+  bottom: 80px;
+  z-index: 5;
+  width: 100vw;
+}
+
+.day {
+  color: rgb(237, 237, 237);
+  width: 100px;
+}
+
+.day p {
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.day p:nth-child(1) {
+  color: rgb(189, 189, 239);
+}
+
+.day .label {
+  font-size: 12px;
+}
